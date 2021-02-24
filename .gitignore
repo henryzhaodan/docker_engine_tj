@@ -1,0 +1,16 @@
+/.idea
+/.vscode
+
+__pycache__
+
+*.so
+*.pth
+*.pkl
+*.dat
+*.pb
+*.tar
+*.caffemodel
+
+/tmp
+*.log
+/config.toml

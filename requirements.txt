@@ -1,0 +1,15 @@
+dlib
+Cython
+Shapely
+tornado
+numpy
+oss2
+tensorboardX
+opencv-contrib-python-headless
+sklearn
+scikit-learn
+torch
+torchvision
+pynsq
+requests
+toml

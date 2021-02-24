@@ -1,0 +1,16 @@
+version: '3.9'
+services:
+  analysis-engine:
+    build: .
+    image: analysis-engine:demo-2.1.2
+    container_name: analysis-engine-container
+    runtime: nvidia
+    environment:
+      - MODEL_FILE_LOCAL_PATH=/tmp/model_archive.tar  # 本地模型文件，如果该变量被设置，MODEL_FILE_REMOTE_URL将不生效
+      - MODEL_FILE_REMOTE_URL=https://dewerthealth.oss-cn-hangzhou.aliyuncs.com/model_assets/model_archive_01.tar
+    volumes:
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+      - ./model_archive_01.tar:/tmp/model_archive.tar:ro # 映射的本地模型文件
+      - ./config.toml:/project/config.toml:ro
+    restart: always

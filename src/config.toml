@@ -1,0 +1,28 @@
+[log]
+level = 'debug'
+
+[oss]
+endpoint = "http://oss-cn-hangzhou.aliyuncs.com"    # OSS地址
+bucket = "dewerthealth"     # OSS仓库
+[oss.auth]
+id = "LTAI4G7WP8nrNgLDJsUewZSC"     # OSS ID
+secret = "RscwRuauhiexzkkQOia9tOUMCiwFtf"   # OSS 密钥
+[oss.download]
+tmp_dir = "../tmp"    # 下载视频流临时存储位置
+[oss.upload]
+filename_format = "{}_result"   # 上传的分析结果文件基于原地址的文件路径
+result_suffixes = [ "result", "json" ]
+title_image_suffixes = [ "title", "png" ]
+
+[nsq]
+[nsq.reader]
+tcp_addr = "127.0.0.1:4150"    # NSQ读取的TCP连接地址，HTTP调试总是失败，所以用TCP
+topic = "raw-videos"    # 未处理视频流地址消息队列的主题
+channel = "DOT"     # 通道名称
+max_in_flight = 9   # 最大并行读取数
+[nsq.writer]
+http_addr = "http://127.0.0.1:4151/pub?topic=analysis-results"     # NSQ写入调用的HTTP地址
+
+[analysis]
+max_parallels = 1
+sample_interval = 4
